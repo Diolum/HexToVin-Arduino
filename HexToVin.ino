@@ -12,18 +12,16 @@
 
 void HextoVin(){
  for (int i=0; i<=16; i++){
-    if(i==0){
       index = indexes[i];
-      decoded = (vhex[index]) / vindecode[i];
+      if(i==0){
+        decoded = (vhex[index]) / vindecode[i];
+        vhex[index]=vhex[index]-(vhex[index] * vindecode[i]);
+      }
+      if(i>0){
+        decoded = ((vhex[index-1]<< 8) + vhex[index]) / vindecode[i];
+        vhex[index-1]=vhex[index-1]-(decoded * vindecode[i])<<8;
+        vhex[index]=vhex[index]-(decoded * vindecode[i]);
+      }
       decodedvin[i]= (Unicode[decoded]);
-      vhex[index]=vhex[index]-(vhex[index] * vindecode[i]);
-    }
-     if(i>0){
-      index = indexes[i];
-      decoded = ((vhex[index-1]<< 8) + vhex[index]) / vindecode[i];
-      decodedvin[i]= (Unicode[decoded]);
-      vhex[index-1]=vhex[index-1]-(decoded * vindecode[i])<<8;
-      vhex[index]=vhex[index]-(decoded * vindecode[i]);
-    }
-  } 
+    } 
 }
