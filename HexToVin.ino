@@ -1,3 +1,6 @@
+//This file only contain HexToVin function and variable
+//It take an array of bytes and respond a VIN as an array of char. 
+
 //HexToVin variable and constant
   uint16_t decoded; //decoded single value
   int index; //Inedex used in loop
